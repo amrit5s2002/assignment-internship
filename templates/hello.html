@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <canvas id="myChart"></canvas>
+      </div>
+      
+</body>
+<script src="https://cdn.jsdelivr.net/npm/chart.js">
+</script>
+<script>
+    console.log("hello")
+    const labels = [{% for data in obj %} {{data.Date|safe}} , {% endfor %}];
+    console.log("labels")
+    const data = {
+      labels: labels,
+      datasets: [{
+        label: '',
+        backgroundColor: 'rgb(255, 99, 132)',
+        borderColor: 'rgb(255, 99, 132)',
+        data: [{% for data in obj %} {{data.Rank|safe}} , {% endfor %}],
+    }]
+    };
+    const config = {
+      type: 'line',
+      data: data,
+      options: {}
+    };
+    
+
+    const myChart = new Chart(
+      document.getElementById('myChart'),
+      config
+    );
+  </script>
+   
+   
+</html>
